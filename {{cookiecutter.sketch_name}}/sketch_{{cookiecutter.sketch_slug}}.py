@@ -1,5 +1,4 @@
 import vsketch
-
 from gcode import gwrite
 
 class {{cookiecutter.class_name}}(vsketch.SketchClass):
@@ -8,9 +7,13 @@ class {{cookiecutter.class_name}}(vsketch.SketchClass):
         vsk.size("{{cookiecutter.page_size}}", landscape={{cookiecutter.landscape}})
         vsk.scale("{{cookiecutter.preferred_unit}}")
 
+        # Sketch goes here
+
+
+
     def finalize(self, vsk: vsketch.Vsketch) -> None:
-        vpype = "linemerge linesimplify reloop linesort"
-        vsk.vpype(vpype + gwrite())
+        pipe = f"linemerge linesimplify reloop linesort"
+        vsk.vpype(pipe + gwrite())
 
 
 if __name__ == "__main__":

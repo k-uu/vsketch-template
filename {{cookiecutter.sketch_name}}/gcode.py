@@ -19,7 +19,6 @@ def gwrite():
         name = "{{cookiecutter.sketch_name}}"
         dir_path = root / name / "gcode"
         file_path = dir_path / add_meta(name, dir_path)
-        profile_path = root / ".vpype.toml"
-        command = f" gwrite --profile {profile_path} {file_path}"
+        command = f" gwrite -p plotter {file_path}"
 
         return command
