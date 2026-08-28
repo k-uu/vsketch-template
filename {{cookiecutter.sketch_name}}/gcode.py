@@ -7,17 +7,23 @@ import vpype_cli
 
 def add_meta(name):
     """
-    adds the current date to start of name
+    adds the current date to start of name.
     """
 
     today = date.today().strftime("%Y%m%d")
     parts = [today, name]
-    return ('_'.join(parts) + ".gcode")
+    return '_'.join(parts)
 
-def gwrite(file_path: Path):
+def gwrite(input_path: Path):
+    """
+    writes gcode from the input svg using gwrite with local plotter config.
+    Appends the current date to the gcode filename.
+    """
 
-    file_path = file_path.parent / add_meta(file_path.stem)
-    args = f"gwrite -p plotter {file_path}"
+    config_path = input_path.parents[2] / ".vpype.toml"
+    out_path = input_path.parents[1] / "gcode" / add_meta(input_path.stem)
+    args = f"-c {config_path} read {input_path} gwrite -p plotter {out_path}.gcode"
     vpype_cli.cli.main(prog_name="vpype",
                        args=shlex.split(args),
                        standalone_mode=False)
+

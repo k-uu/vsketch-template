@@ -1,6 +1,6 @@
 import vsketch
 import pathlib
-from gcode import gwrite
+import gcode
 
 class {{cookiecutter.class_name}}(vsketch.SketchClass):
 
@@ -14,7 +14,7 @@ class {{cookiecutter.class_name}}(vsketch.SketchClass):
         vsk.vpype("linemerge linesimplify reloop linesort")
 
     def post_finalize(self, vsk: vsketch.Vsketch, path: pathlib.Path) -> None:
-        gwrite(path)
+        gcode.gwrite(path)
 
 if __name__ == "__main__":
     {{cookiecutter.class_name}}.display()
