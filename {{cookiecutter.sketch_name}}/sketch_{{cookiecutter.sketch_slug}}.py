@@ -17,7 +17,7 @@ class {{cookiecutter.class_name}}(vsketch.SketchClass):
         vsk.vpype("linemerge linesimplify reloop linesort")
 
     def post_finalize(self, vsk: vsketch.Vsketch, path: pathlib.Path) -> None:
-        gcode.gwrite(path, PAGE_SIZE, landscape=LANDSCAPE)
+        gcode.gwrite(path, landscape=LANDSCAPE)
 
 if __name__ == "__main__":
     {{cookiecutter.class_name}}.display()

@@ -14,7 +14,7 @@ def add_meta(name):
     parts = [today, name]
     return '_'.join(parts)
 
-def gwrite(input_path: Path, page_size="a4", landscape=True):
+def gwrite(input_path: Path, landscape=True):
     """
     writes gcode from the input svg using gwrite with local plotter config.
     Appends the current date to the gcode filename. If the file is not in
@@ -27,7 +27,7 @@ def gwrite(input_path: Path, page_size="a4", landscape=True):
     args = f"-c {config_path} read {input_path} "
 
     if not landscape:
-        args += f"rotate 90 pagesize -l {page_size} "
+        args += f"pagerotate -cw "
 
     g_args = f"gwrite -p plotter {out_path}.gcode"
 
